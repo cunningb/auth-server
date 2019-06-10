@@ -36,6 +36,10 @@ paths:
         schema:
           $ref: '#/definitions/loginRequest'
       responses:
+        200:
+          description: Login successful
+          schema:
+            $ref: '#/definitions/tokenValues'
         401:
           description: Invalid login credentials. The credentials could be wrong, or non-existant.
         500:
@@ -48,8 +52,16 @@ paths:
       operationId: isValid
       consumes:
       - application/json
-      parameters: []
+      parameters:
+      - in: body
+        name: body
+        description: Token values to check for validation
+        required: true
+        schema:
+          $ref: '#/definitions/tokenValues'
       responses:
+        200:
+          description: Ok
         401:
           description: Invalid login credentials. The credentials could be wrong, or non-existant.
   /health:
